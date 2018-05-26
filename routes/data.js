@@ -25,12 +25,15 @@ router.get('/filter/between/:index?/:startAt?/:endAt?', verifyToken, (req, res) 
             // get index from params
             index = req.param('index', 0)
 
+                
             Tracker.find({
                 startAt: {
                     $gt: dateStartAt, $lt: dateEndtAt
                 },
-                userId: authData.user.userId
-            }).then(users => {
+                userId: authData.user._id
+            })
+            .then(users => {
+                console.log(users)
                 // get array of size equals to 10 or less
                 range = (users.length > (index + 10)) ? 10 : (users.length - index)
                 res.json(users.slice(index, range))
@@ -52,7 +55,6 @@ router.post('/new', verifyToken, jsonParser, (req, res) => {
         } else {
 
             const userId = authData.user._id
-            console.log(req.body.description)
 
             const newTimeTracker = new Tracker({
                 userId: userId,
