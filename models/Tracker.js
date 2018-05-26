@@ -18,8 +18,13 @@ const BreakSchema = new Schema({
 })
 
 const TrackerSchema = new Schema({
+    userId:{
+        type: String,
+        required: true
+    },
     description:{
-        type: String
+        type: String,
+        required: true
     },
     startAt:{
         type: Date,
