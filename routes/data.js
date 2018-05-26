@@ -32,6 +32,7 @@ router.get('/filter/between/:index?/:startAt?/:endAt?', verifyToken, (req, res) 
                 },
                 userId: authData.user._id
             })
+            .sort({startAt : 'desc'})
             .then(users => {
                 console.log(users)
                 // get array of size equals to 10 or less
