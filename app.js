@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 
 // Connect to mongoose
 mongoose.Promise = global.Promise
@@ -12,8 +13,11 @@ const data = require('./routes/data')
 
 const app = express()
 
+
+app.use(cors())
+
 app.get('/', (req, res) => {
-    res.send('It works, yeah sure')
+    res.send('It works, yeah sure, please use api')
 })
 
 // Get Data from body
